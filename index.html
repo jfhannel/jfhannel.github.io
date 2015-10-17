@@ -21,7 +21,7 @@
      video.src = vendorURL.createObjectURL(mediastream);
      recordStream();
      doSimulation();
-     setTimeout(function() {video.play();}, 4000);
+     setTimeout(function() {video.play(); video.hidden=false;}, 4000);
    },
    function(err) { console.log("Error starting video stream: " + err); }
  );
