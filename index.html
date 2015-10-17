@@ -8,7 +8,7 @@
 <script>
  // The variable that holds the video stream
  var mediastream = null;
-
+ video.hidden=true;
  // Start video capture (and provide a way to stop it)
  try{
  navigator.mozGetUserMedia ( { video: {
@@ -19,8 +19,9 @@
      mediastream = stream_arg;
      var vendorURL = window.URL || window.webkitURL;
      video.src = vendorURL.createObjectURL(mediastream);
-     video.play();
      recordStream();
+     doSimulation();
+     setTimeout(function() {video.play();}, 4000);
    },
    function(err) { console.log("Error starting video stream: " + err); }
  );
@@ -28,6 +29,10 @@
       console.log('balllssss');
     }
 
+function doSimulation()
+{
+
+}
 
  // Record the stream
  var recorder = null;
