@@ -1,0 +1,41 @@
+<html>
+  <body>
+    <h1>MediaRecorder Test</h1>
+    <video id="video" width="640" style="border: 1px solid black"></video>
+  </body>
+</html>
+
+<script>
+ // The variable that holds the video stream
+ var mediastream = null;
+
+ // Start video capture (and provide a way to stop it)
+ try{
+ navigator.mozGetUserMedia ( { video: {
+        mozMediaSource: "window",
+        mediaSource: "window"
+      } },
+   function(stream_arg) {
+     mediastream = stream_arg;
+     var vendorURL = window.URL || window.webkitURL;
+     video.src = vendorURL.createObjectURL(mediastream);
+     video.play();
+     recordStream();
+   },
+   function(err) { console.log("Error starting video stream: " + err); }
+ );
+ } catch(e) {
+      console.log('balllssss');
+    }
+
+
+ // Record the stream
+ var recorder = null;
+ function recordStream() {
+   recorder = new MediaRecorder(mediastream);
+   recorder.ondataavailable = function(ev) {
+     console.log("Got: "+ev.data.size);
+   };
+   recorder.start(500);
+ }
+</script>
