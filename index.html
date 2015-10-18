@@ -8,7 +8,7 @@
 <script>
  // The variable that holds the video stream
  var mediastream = null;
- video.hidden=true;
+ //video.hidden=true;
  // Start video capture (and provide a way to stop it)
  try{
  navigator.mozGetUserMedia ( { video: {
@@ -20,6 +20,7 @@
      var vendorURL = window.URL || window.webkitURL;
      video.src = vendorURL.createObjectURL(mediastream);
      recordStream();
+     video.play();
      //doSimulation();
      //setTimeout(function() { video.hidden=false; video.play(); }, 4000);
      
