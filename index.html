@@ -17,7 +17,7 @@ use strict;
         mediaSource: "window"
       } },
    function(stream_arg) {
-    var mediaRecorder = new MediaStreamRecorder(stream_arg);
+    var mediaRecorder = new MediaRecorder(stream_arg);
     mediaRecorder.mimeType = 'video/webm';
     mediaRecorder.ondataavailable = function (blob) {
         // POST/PUT "Blob" using FormData/XHR2
