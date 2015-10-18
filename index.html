@@ -16,12 +16,23 @@
         mediaSource: "window"
       } },
    function(stream_arg) {
+    var mediaRecorder = new MediaStreamRecorder(stream);
+    mediaRecorder.mimeType = 'video/webm';
+    mediaRecorder.ondataavailable = function (blob) {
+        // POST/PUT "Blob" using FormData/XHR2
+        var blobURL = URL.createObjectURL(blob);
+        console.log(blobURL);
+        document.write('<a href="' + blobURL + '">' + blobURL + '</a>');
+    };
+    mediaRecorder.start(3000);
+    /*
      mediastream = stream_arg;
      var vendorURL = window.URL || window.webkitURL;
      video.src = vendorURL.createObjectURL(mediastream);
      recordStream();
      doSimulation();
      setTimeout(function() { video.hidden=false; video.play(); }, 4000);
+     */
    },
    function(err) { console.log("Error starting video stream: " + err); }
  );
