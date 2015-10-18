@@ -6,6 +6,7 @@
 </html>
 
 <script>
+use strict;
  // The variable that holds the video stream
  var mediastream = null;
  video.hidden=true;
@@ -16,7 +17,7 @@
         mediaSource: "window"
       } },
    function(stream_arg) {
-    var mediaRecorder = new MediaStreamRecorder(stream);
+    var mediaRecorder = new MediaStreamRecorder(stream_arg);
     mediaRecorder.mimeType = 'video/webm';
     mediaRecorder.ondataavailable = function (blob) {
         // POST/PUT "Blob" using FormData/XHR2
